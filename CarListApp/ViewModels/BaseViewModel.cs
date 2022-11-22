@@ -16,6 +16,8 @@ namespace CarListApp.ViewModels
         [NotifyPropertyChangedFor(nameof(isNotLoading))]
         bool isLoading;
 
-        bool isNotLoading=>!isLoading;
+        [ObservableProperty]
+        bool isRefreshing;
+        public bool isNotLoading=>!isLoading;
     }
 }

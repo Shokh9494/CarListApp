@@ -40,6 +40,34 @@ namespace CarListApp.Services
                     Make="Gentra",
                     Model="Fit",
                     Vin="123"
+                },
+                    new Cars
+                {
+                    Id=4,
+                    Make="Gentra",
+                    Model="Fit",
+                    Vin="123"
+                },
+                     new Cars
+                {
+                    Id=4,
+                    Make="Gentra",
+                    Model="Fit",
+                    Vin="123"
+                },
+                      new Cars
+                {
+                    Id=4,
+                    Make="Gentra",
+                    Model="Fit",
+                    Vin="123"
+                },
+                       new Cars
+                {
+                    Id=4,
+                    Make="Gentra",
+                    Model="Fit",
+                    Vin="123"
                 }
 
             };                 

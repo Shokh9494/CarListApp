@@ -1,5 +1,6 @@
 ﻿using CarListApp.Models;
 using CarListApp.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CarListApp.ViewModels
 {
-    public partial class CarListViewModel :BaseViewModel
+    public partial class CarListViewModel : BaseViewModel
     {
         private readonly CarService carService;
         public ObservableCollection<Cars> cars { get; private set; } = new();
@@ -22,9 +23,12 @@ namespace CarListApp.ViewModels
             this.carService=carService;
         }
 
+       
+
         [RelayCommand]
         async Task GetCarList()
         {
+            
             if(IsLoading) return;
             try
             {
@@ -44,6 +48,7 @@ namespace CarListApp.ViewModels
             finally
             {
                 IsLoading= false;
+                IsRefreshing = false;
             }
         }
     }

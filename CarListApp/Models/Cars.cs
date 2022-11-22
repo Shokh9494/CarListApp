@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 namespace CarListApp.Models
 {
     
-    public class Cars
+    public class Cars :BaseEntity
     {
-        public int Id { get;  set; }
         public string Make { get; set; }
         public string Model { get; set; }
         public string Vin { get; set; }
-
-
     }
 }
