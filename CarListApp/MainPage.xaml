@@ -30,7 +30,8 @@
                                 <Label Text="{Binding Model}"></Label>
                             </HorizontalStackLayout>
                                 <Frame.GestureRecognizers>
-                                    <SwipeGestureRecognizer Direction="Left"/>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CarListViewModel}},Path=GetCarDetailsCommand}"
+                                                          CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                         </Frame>
                     </Grid>
@@ -45,7 +46,7 @@
                 IsEnabled="{Binding isNotLoading}"
                 Grid.Row="1"
                 Margin="10"
-                BackgroundColor="Black"
+                BackgroundColor="Green"
                 >
         </Button>
     </Grid>

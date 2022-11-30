@@ -1,4 +1,5 @@
 ﻿using CarListApp.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,68 +10,33 @@ namespace CarListApp.Services
 {
     public class CarService
     {
+        SQLiteConnection connection;
+        string _dbPath;
+
+        public CarService(string dbPath)
+        {
+            _dbPath = dbPath;
+        }
+
+        private void Init()
+        {
+            if (connection != null) return;
+            connection = new SQLiteConnection(_dbPath);
+            connection.CreateTable<Cars>();
+        }
         public async Task<List<Cars>> GetCarsAsysn()
         {
-            return new List<Cars>()
+            try
             {
-                new Cars
-                {
-                    Id=1,
-                    Make="Honda",
-                    Model="Fit",
-                    Vin="123"
-                },
-                 new Cars
-                {
-                    Id=2,
-                    Make="Spark",
-                    Model="Fit",
-                    Vin="123"
-                },
-                  new Cars
-                {
-                    Id=3,
-                    Make="Nexia",
-                    Model="Fit",
-                    Vin="123"
-                },
-                   new Cars
-                {
-                    Id=4,
-                    Make="Gentra",
-                    Model="Fit",
-                    Vin="123"
-                },
-                    new Cars
-                {
-                    Id=4,
-                    Make="Gentra",
-                    Model="Fit",
-                    Vin="123"
-                },
-                     new Cars
-                {
-                    Id=4,
-                    Make="Gentra",
-                    Model="Fit",
-                    Vin="123"
-                },
-                      new Cars
-                {
-                    Id=4,
-                    Make="Gentra",
-                    Model="Fit",
-                    Vin="123"
-                },
-                       new Cars
-                {
-                    Id=4,
-                    Make="Gentra",
-                    Model="Fit",
-                    Vin="123"
-                }
+                Init();
 
-            };                 
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return new List<Cars>();
         }
     }
 }

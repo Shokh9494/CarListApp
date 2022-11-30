@@ -1,4 +1,5 @@
 ﻿using CarListApp.Models;
+using CarListApp.Pages;
 using CarListApp.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -15,12 +16,10 @@ namespace CarListApp.ViewModels
 {
     public partial class CarListViewModel : BaseViewModel
     {
-        private readonly CarService carService;
         public ObservableCollection<Cars> cars { get; private set; } = new();
-        public CarListViewModel(CarService carService)
+        public CarListViewModel()
         {
             Title = "Car lisr";
-            this.carService=carService;
         }
 
        
@@ -34,7 +33,7 @@ namespace CarListApp.ViewModels
             {
                 IsLoading= true;
                 if(cars.Any()) cars.Clear();
-                var car = await carService.GetCarsAsysn();
+                var car = await App.CarService.GetCarsAsysn();
                 foreach (var item in car)
                 {
                     cars.Add(item);
@@ -51,5 +50,16 @@ namespace CarListApp.ViewModels
                 IsRefreshing = false;
             }
         }
+
+        [RelayCommand]
+        async Task GetCarDetails(Cars cars)
+        {
+            if (cars == null) return;
+            await Shell.Current.GoToAsync(nameof(CarDetailsPage), true, new Dictionary<string, object>
+            {
+                { nameof(Cars),cars}
+            });
+        }
+            
+        }
     }
-}

@@ -1,9 +1,12 @@
-﻿namespace CarListApp;
+﻿using CarListApp.Pages;
+
+namespace CarListApp;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
+		Routing.RegisterRoute(nameof(CarDetailsPage),typeof(CarDetailsPage));	
 	}
 }
