@@ -1,17 +1,14 @@
 ﻿using CarListApp.Models;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+   
 namespace CarListApp.Services
 {
     public class CarService
     {
         SQLiteConnection connection;
         string _dbPath;
+        public string StatusMessage;
+        int result= 0;
 
         public CarService(string dbPath)
         {
@@ -37,6 +34,41 @@ namespace CarListApp.Services
                 throw;
             }
             return new List<Cars>();
+        }
+
+        public void AddCar(Cars car) 
+        {
+            try
+            {
+                Init();
+                if(car is null) 
+                throw new Exception("Ivalid Car Record");
+
+                result=connection.Insert(car);
+                StatusMessage = result == 0 ? "Insert Failed" : "InsertSucessFul";
+
+
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = "Filed to insert data";
+              
+            }
+        }
+
+        public int DeleteCar(int id)
+        {
+            try
+            {
+                Init();
+                return connection.Table<Cars>().Delete(q=>q.Id==id);
+            }
+            catch (Exception)
+            {
+                StatusMessage = "Failed to delete data";
+                throw;
+            }
+            return 0;
         }
     }
 }

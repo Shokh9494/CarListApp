@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarListApp.AddCarsPage"
+             xmlns:model="clr-namespace:CarListApp.Models"
+             xmlns:viewmodel="clr-namespace:CarListApp.ViewModels"
+             x:DataType="viewmodel:CarListViewModel"
+             Title="AddCarsPage">
+    <Grid 
+          RowDefinitions="auto,auto,auto,*"
+          ColumnDefinitions="*"
+          ColumnSpacing="1"
+          RowSpacing="1">
+        <VerticalStackLayout 
+                             Padding="5"
+                             Grid.Row="0"
+                             Margin="9">
+            <Entry x:Name="Make" Placeholder="Enter Make" Text="{Binding Make}"/>
+            <Entry x:Name="Model" Placeholder="Enter Make" Text="{Binding Model}"/>
+            <Entry x:Name="Vin" Placeholder="Enter Make" Text="{Binding Vin}"/>
+        </VerticalStackLayout>
+
+        <Button 
+                Text="Add Car"
+                Grid.Row="1"
+                IsEnabled="{Binding isNotLoading}"
+                Margin="9">
+        </Button>
+
+        <Button 
+                Text="fetch Car"
+                Grid.Row="2"
+                IsEnabled="{Binding isNotLoading}"
+                Margin="9"
+                Command="{Binding GetCarListCommand}">
+        </Button>
+
+        <RefreshView 
+            Grid.Column="4"
+            Command="{Binding GetCarListCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView 
+                ItemsSource="{Binding cars}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate 
+                        x:DataType="model:Cars">
+                        <Grid
+                            Padding="10"
+                            ColumnDefinitions="*,auto">
+                            <Frame
+                                HeightRequest="70"
+                                Grid.Column="0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CarListViewModel}},Path=GetCarDetails}"
+                                        CommandParameter="{Binding Id}">
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout 
+                                    Padding="5" 
+                                    Spacing="5">
+                                    <Label Text="{Binding Make}"/>
+                                    <Label Text="{Binding Model}"/>
+                                </HorizontalStackLayout>
+                            </Frame>
+                            <HorizontalStackLayout Grid.Column="1">
+                                <Button
+                                    Text="Udate"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CarListViewModel}},Path=UpdateCarCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Margin="9">
+                                </Button>
+                                <Button
+                                    Text="Delete"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CarListViewModel}},Path=DeleteCarCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Margin="9">
+                                </Button>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

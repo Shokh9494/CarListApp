@@ -20,8 +20,15 @@ namespace CarListApp.ViewModels
         public CarListViewModel()
         {
             Title = "Car lisr";
+            GetCarList().Wait();
         }
 
+        [ObservableProperty]
+        string make;
+        [ObservableProperty]
+        string model;
+        [ObservableProperty]
+        string vin;
        
 
         [RelayCommand]
@@ -60,6 +67,43 @@ namespace CarListApp.ViewModels
                 { nameof(Cars),cars}
             });
         }
-            
+
+        [RelayCommand]
+        async Task AddCar()
+        {
+            if (string.IsNullOrEmpty(Make) || string.IsNullOrEmpty(Model) || string.IsNullOrEmpty(Vin))
+            {
+                await Shell.Current.DisplayAlert("Invalid Data", "Please insert valid data", "Ok");
+                return;
+            }
+            var car = new Cars
+            {
+                Make = Make,
+                Model = Model,
+                Vin = Vin,
+            };
+            App.CarService.AddCar(car);
+            await Shell.Current.DisplayAlert("Sucesss", App.CarService.StatusMessage, "Ok");
+            await GetCarList();
+        }
+
+        [RelayCommand]
+        async Task DeleteCar(int id)
+        {
+            if(id == 0)
+            {
+                await Shell.Current.DisplayAlert("Invalid Recor", "PleaseTryagain", "Ok");
+                return;
+            }
+            var result = App.CarService.DeleteCar(id);
+            if (result == 0) await Shell.Current.DisplayAlert("Info", "Please insert valid data", "Ok");
+            else
+            {
+                await Shell.Current.DisplayAlert("Deletion Sucessful", "Record remove Sucessfully", "Ok");
+                await GetCarList();
+            }
+
+        }
+
         }
     }

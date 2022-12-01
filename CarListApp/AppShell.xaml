@@ -15,10 +15,10 @@
         Route="MainPage" />
             <ShellContent
         Title="ssss"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate local:AddCarsPage }"
         Route="MainPage" />
         </Tab>
-
+ 
     </TabBar>
 
 

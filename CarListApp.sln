@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarListApp", "CarListApp\CarListApp.csproj", "{666FDE21-233B-46DD-AC75-A713F99AD661}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWSACore", "..\..\..\Downloads\naiton-mobile-main\naiton-mobile-main\SWSACore\SWSACore.csproj", "{69E87085-F5C9-4CCB-B38E-B65647B5BCAB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,10 +17,6 @@ Global
 		{666FDE21-233B-46DD-AC75-A713F99AD661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{666FDE21-233B-46DD-AC75-A713F99AD661}.Release|Any CPU.Build.0 = Release|Any CPU
 		{666FDE21-233B-46DD-AC75-A713F99AD661}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{69E87085-F5C9-4CCB-B38E-B65647B5BCAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69E87085-F5C9-4CCB-B38E-B65647B5BCAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69E87085-F5C9-4CCB-B38E-B65647B5BCAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69E87085-F5C9-4CCB-B38E-B65647B5BCAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
